@@ -17,17 +17,24 @@
 ## 三、系统架构
 
 ```mermaid
-flowchart LR
-    A[中华本草 PDF / 多卷扫描件] --> B[逐页 OCR：PyMuPDF 渲染 200DPI + 视觉模型识别]
-    B --> C[按页输出 markdown，支持断点续跑]
-    C --> D[表格修复：HTML 向上填充算法]
-    D --> E[文本清洗：去图片块 / 压缩换行]
-    E --> F[人工校对：自研 OCR 校对编辑器]
-    F --> G[Dify 父子分段导入：父块=药材条目 / 子块=检索切片]
-    G --> H[向量索引]
-    H --> I[智能体问答：Dify 工作流 + Vue 前端]
-```
+flowchart TD
+    A[中华本草 PDF / 多卷扫描件]
+    B[OCR 数字化：逐页渲染 + 表格修复]
+    C[清洗与校对：文本清洗 + 人工校对]
+    D[Dify 父子分段导入 + 向量索引]
+    E[Dify 工作流 + Vue 前端问答]
+    A --> B --> C --> D --> E
 
+    classDef input fill:#E3F2FD,stroke:#1976D2,stroke-width:2px,color:#0D47A1;
+    classDef ocr fill:#E8F5E9,stroke:#388E3C,stroke-width:2px,color:#1B5E20;
+    classDef clean fill:#FFF3E0,stroke:#F57C00,stroke-width:2px,color:#E65100;
+    classDef kb fill:#F3E5F5,stroke:#7B1FA2,stroke-width:2px,color:#4A148C;
+    classDef qa fill:#FFEBEE,stroke:#C62828,stroke-width:2px,color:#B71C1C;
+    class A input;
+    class B ocr;
+    class C clean;
+    class D kb;
+    class E qa;
 ## 四、核心设计与踩坑记录
 
 ### 1. 逐页 OCR 与断点续跑（`01_pdf_page_ocr.py`）
