@@ -16,7 +16,6 @@
 
 ## 三、系统架构
 
-```mermaid
 flowchart TD
     A[中华本草 PDF / 多卷扫描件]
     B[OCR 数字化：逐页渲染 + 表格修复]
