@@ -84,7 +84,7 @@ flowchart TD
 │   ├── 03_import_dify_parentchild.py # Dify 父子分段批量导入
 │   └── 04_get_process_rule.py        # 查询数据集分段配置（调试用）
 └── ocr_review_server/
-    └── server.js                     # OCR 人工校对编辑器服务端（前端页面未包含）
+    └── server.js                     # OCR 人工校对编辑器服务端（含内嵌网页端）
 ```
 
 ## 六、运行方式
